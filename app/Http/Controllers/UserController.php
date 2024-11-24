@@ -52,4 +52,17 @@ class UserController extends Controller
             'token' => $token
         ], 200);
     }
+
+    public function delete(int $id)
+    {
+        $user = User::findOrFail($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['message' => 'User deleted successfully'], 200);
+    }
 }

@@ -23,3 +23,4 @@ Route::get('/products/{id}', [ProductController::class, 'show']);
 //Users
 Route::get('/users/{id}', [UserController::class, 'show']);
 Route::post('/profile/update/{id}', [UserController::class, 'update']);
+Route::delete('/profile/delete/{id}', [UserController::class, 'delete']);
