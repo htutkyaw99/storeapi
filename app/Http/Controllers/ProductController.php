@@ -7,14 +7,31 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // public function index()
-    // {
-    //     $produts = Product::all();
+    public function index()
+    {
+        $products = Product::with('category')->get();
 
-    //     return response()->json(
-    //         [
-    //             'products' => $produts
-    //         ]
-    //     );
-    // }
+        return response()->json(
+            [
+                'products' => $products,
+            ]
+        );
+    }
+
+    public function show(int $id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json([
+                'message' => 'Product not found',
+            ], 404);
+        }
+
+        return response()->json(
+            [
+                'product' => $product,
+            ]
+        );
+    }
 }
